@@ -1,8 +1,12 @@
 var userChar;
 var compChar;
 var board = ['','','','','','','','',''];
+var openBoard = [];
 var userTurn;
 var userMoves = [];
+var compMoves;
+
+
 var moveCount;
 var winGame;
 var isTie;
@@ -42,112 +46,120 @@ function checkOpenSquare(square){
     }
 }
 
-
 // assign marker to array
 function assignSquare(symbol, square){
     board[square] = symbol;
     return board;
 }
 
-function compMove(){
-    var move = getRandomInt;
-    if(checkOpenSquare(move)){
-        board[move] = compChar;
 
-    };
+// return compChar into randomly selected blank square
+function strategyRandom() {
+    // gather all the blank spots in an array
+    for (x = 0; x < board.length;  x++) {
+
+        if (board[x] ==='') openBoard.push(x);
+    }
+    console.log("before openBoard = " + openBoard);
+    // shfit off openBoard
+
+    var currentCompSpace = openBoard.shift();
+    assignSquare(userTurn, currentCompSpace);
+    console.log("after openBoard = " + openBoard);
+    var id = '';
+
+    switch (currentCompSpace) {
+        case 0:
+            id = "a1";
+            break;
+        case 1:
+            id = "a2";
+            break;
+        case 2:
+            id = "a3";
+            break;
+        case 3:
+            id = "b1";
+            break;
+        case 4:
+            id = "b2";
+            break;
+        case 5:
+            id = "b3";
+            break;
+        case 6:
+            id = "c4";
+            break;
+        case 7:
+            id = "c5";
+            break;
+        case 8:
+            id = "c6";
+            break;
+    }
+    console.log("# to grab is: " + id);
+    document.getElementById(id).className = userTurn;
+    openBoard = [];
+    id = '';
+    changeTurn();
+
+
 }
 
-// go in a randomly selected blank space
-//function strategyRandom() {
-//    // gather all the blank spots in an array
-//    var blanks = [];
-//    for (var x=0; x<3; x++) {
-//        for (var y=0; y<3; y++) {
-//            if (val(x,y)=='') blanks.push([x,y]);
-//        }
-//    }
-//    // return a random entry in the array of blanks
-//    if (blanks.length>0) {
-//        var r = Math.floor((Math.random()*blanks.length));
-//        return blanks[r];
-//    }
-//    else return false;
-//}
-function getRandomInt() {
-    return Math.floor(Math.random() * 9);
+
+function checkWin(){
+
+    if(userMoves === ['0','4','8']){
+        alert(userChar + " Wins!");
+
+    }
 }
 
-// create array of user moves
-function userMovesFn() {
-    for(i = 0; i<board.length; i++){
-        if(board[i] === userChar){
-            userMoves.push(i);
+
+
+
+// click a square and save to board array
+document.getElementById("board").addEventListener("click", function(e) {
+    // assign div data-index to var
+    var square = e.target.dataset.index;
+
+    // if targetSquare is open, place marker in array add square location to userMoves.
+    if (checkOpenSquare(square)){
+        assignSquare(userTurn, square);
+
+        userMoves.push(square);
+
+
+        // ammend X or O to targetSquare UI
+        e.srcElement.classList.add(userTurn);
+        console.log("userMoves: " + userMoves);
+        var array2 = [6,7,8];
+        var is_same = userMoves.every(function(element, index) {
+                return element === array2[index];
+            });
+        if(is_same) {
+            alert(userChar + " Wins!");
         }
     }
-    console.log("user moves so far: " + userMoves);
-}
+    changeTurn();
+    strategyRandom();
+    checkWin();
 
-//function compMoveLogic(userMoves){
-//
-//}
-
-    // click a square and save to board array
-    document.getElementById("board").addEventListener("click", function (e) {
-        // identify clicked targetSquare
-        if(e.target && e.target.nodeName == "DIV") {
-
-            // assign div # to var
-            var square = e.target.dataset.index;
-
-            // if targetSquare is open, place marker in array.
-
-                assignSquare(userChar, square);
-                console.log(board);
-
-                // ammend X or O to targetSquare UI
-                e.srcElement.classList.add(userTurn);
-
-            changeTurn();
-
-
-            //userMovesFn();
-
-
-        }
-
-    });
-
-//var fruits = ["Banana", "Orange", "Apple", "Mango" , "Apple"];
-//var apples = [];
-//for(var i = 0; i <= fruits.length; i++){
-//    if(fruits[i] === "Apple"){
-//        apples.push(i);
-//    }
-//}
-//console.log(apples);
+});
 
 
 /*
-var userChar = 'X';
-var compChar = 'Y';
-var board = ['','X','','X','','','','',''];
-var userTurn;
-*/
+ var userChar = 'X';
+ var compChar = 'Y';
+ var board = ['','X','','X','','','','',''];
+ var openBoard = [];
+ var userTurn;
 
+ for (x = 0; x < board.length;  x++) {
 
-
-// create array of user moves
-//function userMovesFn() {
-//    var idx = board.indexOf(userChar);
-//    while (idx != -1) {
-//        userMoves.push(idx);
-//        idx = board.indexOf(userChar, idx + 1);
-//    }
-//    console.log("user moves so far: " + userMoves);
-//}
-
-
-
-
+ if (board[x] ==='') {openBoard.push(i)};
+ }
+ console.log("openBoard = " + openBoard);
+ */
 
 

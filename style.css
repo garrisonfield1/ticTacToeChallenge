@@ -1,32 +1,36 @@
+body, button{
+    color:#fff;
+}
+
 #board{
-    height: 400px;
-    width: 400px;
+    height: 450px;
+    width: 450px;
     margin: 0 auto;
     overflow: visible;
-
 }
+
 #board div{
-    height:32%;
-    width:32%;
+    height:31.11111%;
+    width:31.1111%;
     display: inline-block;
-    margin: 0 auto;
+    margin: 3px;
     vertical-align: top;
     text-align: center;
-    border:1px solid #000;
     box-sizing: border-box;
-    font-size: 6em;
-    /*line-height: .8em;*/
-    overflow: visible;
+    font-size: 8em;
+    border-radius: .2em;
+    background-color: #78bec5;
 }
 
-
-/* Buttons */
 button{
     width: 10em;
-    color: #fff;
-    background-color: green;
+    background-color: #3d4250;
     padding: 1em .5em;
     display: inline-block;
+    border-radius: 1em;
+    box-shadow: 0;
+    border:0;
+    font-size: 1.2em;
 }
 
 .buttonWrap{
@@ -34,13 +38,12 @@ button{
 }
 
 .X:before{
-
     content:"X";
     width: 100%;
     height: 100%
 }
-.O:before{
 
+.O:before{
     content:"O";
     width: 100%;
     height: 100%
