@@ -11,8 +11,16 @@ var moveCount;
 var winGame;
 var isTie;
 
+
+
+function enableBoard(){
+    document.getElementById('board').style.pointerEvents = 'auto';
+}
+
+
 // user chooses X or O, computer is assigned alternative
 function chooseChar(elem){
+    enableBoard();
     if(elem.id === 'chooseX'){
         userTurn = userChar = 'X';
         compChar = 'O';
@@ -117,6 +125,8 @@ function checkWin(){
 
 
 
+// disable board until userChar is chosen
+document.getElementById('board').style.pointerEvents = 'none';
 
 // click a square and save to board array
 document.getElementById("board").addEventListener("click", function(e) {
