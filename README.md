@@ -1,8 +1,7 @@
-# ticTacToeChallenge
-CMG challenge currently unfinished
+# Tic Tac Toe Challenge
+CMG challenge - currently unfinished
 
 Acceptance Criteria:
-
 <ul>
 <li>Application is a standalone, static web page game of tic tac toe. </li>
 <li>Application should be able to run based on HTML, CSS and Javascript.</li>
